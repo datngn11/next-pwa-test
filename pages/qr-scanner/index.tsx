@@ -31,7 +31,7 @@ const createConfig = (props: any) => {
 };
 
 const QrScanner = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
 
   const qrCodeErrorCallback = (...error: any) => {
     console.log(`ERROR = ${error}`);
