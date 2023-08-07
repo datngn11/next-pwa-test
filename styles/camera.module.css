@@ -1,0 +1,17 @@
+.label {
+  display: block;
+  margin-bottom: 16px;
+  padding: 8px;
+  background-color: #0070f3;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.label:hover {
+  cursor: pointer;
+  background-color: #0060d3;
+}
+
+.input {
+  display: none;
+}

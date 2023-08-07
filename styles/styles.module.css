@@ -1,0 +1,18 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-link {
+  color: #0070f3;
+}
