@@ -9,7 +9,7 @@ export default function Home() {
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    router.push(value);
+    window.location.href = "https://" + value;
   };
 
   return (

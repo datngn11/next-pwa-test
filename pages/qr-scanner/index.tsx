@@ -6,6 +6,7 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 const qrcodeRegionId = "html5qr-code-full-region";
 
 import styles from "styles/camera.module.css";
+import Link from "next/link";
 
 const props = {
   fps: 10,
@@ -68,9 +69,7 @@ const QrScanner = () => {
 
   return (
     <div className={common.container}>
-      <h1>Camera</h1>
-
-      {data ? <h1>{data}</h1> : <div id={qrcodeRegionId} />}
+      {data ? <Link href={data}>{data}</Link> : <div id={qrcodeRegionId} />}
     </div>
   );
 };
