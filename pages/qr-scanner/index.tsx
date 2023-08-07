@@ -7,20 +7,10 @@ const qrcodeRegionId = "html5qr-code-full-region";
 
 import styles from "styles/camera.module.css";
 
-const qrCodeSuccessCallback = (decodedText: string, decodedResult: any) => {
-  console.log(`Scan result = ${decodedText}`, decodedResult);
-};
-
-const qrCodeErrorCallback = (...error: any) => {
-  console.log(`Scan result = ${error}`);
-};
-
 const props = {
   fps: 10,
   qrbox: 250,
   disableFlip: false,
-  qrCodeSuccessCallback,
-  qrCodeErrorCallback,
 };
 
 const createConfig = (props: any) => {
@@ -41,9 +31,17 @@ const createConfig = (props: any) => {
 };
 
 const QrScanner = () => {
-  const [inputValue, setInputValue] = useState<File | undefined>();
-
   const [data, setData] = useState("No result");
+
+  const qrCodeErrorCallback = (...error: any) => {
+    console.log(`ERROR = ${error}`);
+  };
+
+  const qrCodeSuccessCallback = (decodedText: string, decodedResult: any) => {
+    setData(decodedText);
+
+    console.log(`Scan result = ${decodedText}`, decodedResult);
+  };
 
   useEffect(() => {
     // when component mounts
@@ -51,9 +49,6 @@ const QrScanner = () => {
     //@ts-ignore
     const verbose = props.verbose === true;
     // Suceess callback is required.
-    if (!props.qrCodeSuccessCallback) {
-      throw "qrCodeSuccessCallback is required callback.";
-    }
 
     const html5QrcodeScanner = new Html5QrcodeScanner(
       qrcodeRegionId,
@@ -61,10 +56,7 @@ const QrScanner = () => {
       verbose
     );
 
-    html5QrcodeScanner.render(
-      props.qrCodeSuccessCallback,
-      props.qrCodeErrorCallback
-    );
+    html5QrcodeScanner.render(qrCodeSuccessCallback, qrCodeErrorCallback);
 
     // cleanup function when component will unmount
     return () => {
@@ -78,25 +70,7 @@ const QrScanner = () => {
     <div className={common.container}>
       <h1>Camera</h1>
 
-      {/* <label htmlFor="camera" className={styles.label}>
-        Open
-      </label>
-
-      <input
-        id="camera"
-        type="file"
-        className={styles.input}
-        accept="image/*"
-        capture="environment"
-        onChange={(e) => {
-          setInputValue(e.target.files?.[0]);
-        }}
-      />
-      {inputValue && (
-        <span className={styles.fileName}>{JSON.stringify(inputValue)}</span>
-      )} */}
-
-      <div id={qrcodeRegionId} />
+      {data ? <h1>data</h1> : <div id={qrcodeRegionId} />}
     </div>
   );
 };
