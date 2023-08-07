@@ -13,3 +13,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#html5-qrcode-anchor-scan-type-change {
+  display: none !important;
+}
+
+#html5qr-code-full-region {
+  border: none !important;
+}
+
+#html5qr-code-full-region > div:first-child {
+  display: none;
+}
